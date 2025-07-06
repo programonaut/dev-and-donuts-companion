@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { BottomSheetProvider } from "./contexts/BottomSheetContext";
+import BottomSheetProvider from "../components/BottomSheetContext";
 
 export const DATABASE_NAME = "devanddonutscompanion";
 

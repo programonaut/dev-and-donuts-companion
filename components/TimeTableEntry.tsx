@@ -3,6 +3,10 @@ import { Text, TouchableOpacity } from "react-native";
 
 export type TimeTableEntryType = {
   title: string;
+  speaker?: {
+    name: string;
+    image: string;
+  };
   summary: string;
   description: string;
   start: string;
@@ -30,6 +34,13 @@ export const TimeTableEntry = (props: {
       <Text style={{ fontSize: 16, fontWeight: "bold" }}>
         {props.entry.title}
       </Text>
+      {props.entry.speaker && (
+        <Text
+          style={{ fontSize: 14, marginBottom: 4, color: Colors.textTertiary }}
+        >
+          {props.entry.speaker.name}
+        </Text>
+      )}
       <Text style={{ fontSize: 14 }}>{props.entry.summary}</Text>
     </TouchableOpacity>
   );

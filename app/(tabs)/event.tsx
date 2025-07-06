@@ -7,7 +7,7 @@ import { drizzle, useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { useSQLiteContext } from "expo-sqlite";
 import { Text, View } from "react-native";
-import { useBottomSheet } from "../contexts/BottomSheetContext";
+import { useBottomSheet } from "../../components/BottomSheetContext";
 
 export default function Index() {
   const db = useSQLiteContext();
@@ -30,6 +30,7 @@ export default function Index() {
         paddingTop: 20,
         paddingHorizontal: 16,
         backgroundColor: Colors.background,
+        overflowX: "visible",
       }}
     >
       <Text style={{ fontSize: 20, fontWeight: "bold" }}>{data[0]?.name}</Text>
