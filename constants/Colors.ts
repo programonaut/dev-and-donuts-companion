@@ -1,26 +1,52 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
 export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
-};
+    // Primary colors
+    primary: '#007AFF',     // iOS blue
+    primaryLight: '#4A9EFF',
+    primaryDark: '#0056CC',
+
+    // Neutral colors
+    white: '#FFFFFF',
+    black: '#000000',
+
+    // Gray scale
+    gray50: '#F9FAFB',
+    gray100: '#F3F4F6',
+    gray200: '#E5E7EB',
+    gray300: '#D1D5DB',
+    gray400: '#9CA3AF',
+    gray500: '#6B7280',
+    gray600: '#4B5563',
+    gray700: '#374151',
+    gray800: '#1F2937',
+    gray900: '#111827',
+
+    // Semantic colors
+    background: '#FFFFFF',
+    surface: '#F9FAFB',
+    card: '#FFFFFF',
+    text: '#111827',
+    textSecondary: '#6B7280',
+    textTertiary: '#9CA3AF',
+    border: '#E5E7EB',
+    borderLight: '#F3F4F6',
+
+    // Status colors
+    success: '#10B981',
+    warning: '#F59E0B',
+    error: '#EF4444',
+    info: '#3B82F6',
+
+    // Interactive states
+    highlight: '#007AFF',
+    pressed: '#0056CC',
+    active: '#007AFF',
+    disabled: '#D1D5DB',
+    placeholder: '#9CA3AF',
+
+    // Shadow
+    shadow: 'rgba(0, 0, 0, 0.1)',
+    shadowLight: 'rgba(0, 0, 0, 0.05)',
+    shadowDark: 'rgba(0, 0, 0, 0.25)',
+} as const;
+
+export type ColorKey = keyof typeof Colors; 
