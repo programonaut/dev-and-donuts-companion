@@ -7,7 +7,10 @@ export type EventStructure = {
 
 export type TimeTableType = TimeTableEntryType[];
 
-export const TimeTable = (props: { timeTable: TimeTableType }) => {
+export const TimeTable = (props: {
+  timeTable: TimeTableType;
+  onEntryPress: (entry: TimeTableEntryType) => void;
+}) => {
   const timeTableData = props.timeTable.map((event) => {
     return {
       title: event.start,
@@ -30,7 +33,12 @@ export const TimeTable = (props: { timeTable: TimeTableType }) => {
       <SectionList
         sections={timeTableData}
         keyExtractor={(item, index) => item.title + index.toString()}
-        renderItem={({ item }) => <TimeTableEntry entry={item} />}
+        renderItem={({ item }) => (
+          <TimeTableEntry
+            entry={item}
+            onPress={() => props.onEntryPress(item)}
+          />
+        )}
         renderSectionHeader={({ section }) => (
           <Text style={{ marginTop: 20, marginBottom: 4 }}>
             {section.title}

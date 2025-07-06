@@ -1,5 +1,5 @@
 import { Colors } from "@/constants/colors";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 
 export type TimeTableEntryType = {
   title: string;
@@ -9,9 +9,13 @@ export type TimeTableEntryType = {
   end: string;
 };
 
-export const TimeTableEntry = (props: { entry: TimeTableEntryType }) => {
+export const TimeTableEntry = (props: {
+  entry: TimeTableEntryType;
+  onPress?: () => void;
+}) => {
   return (
-    <View
+    <TouchableOpacity
+      onPress={props.onPress}
       style={{
         borderRadius: 10,
         padding: 10,
@@ -27,6 +31,6 @@ export const TimeTableEntry = (props: { entry: TimeTableEntryType }) => {
         {props.entry.title}
       </Text>
       <Text style={{ fontSize: 14 }}>{props.entry.summary}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
