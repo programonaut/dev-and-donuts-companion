@@ -30,7 +30,6 @@ export default function Index() {
         paddingTop: 20,
         paddingHorizontal: 16,
         backgroundColor: Colors.background,
-        overflowX: "visible",
       }}
     >
       <Text style={{ fontSize: 20, fontWeight: "bold" }}>{data[0]?.name}</Text>

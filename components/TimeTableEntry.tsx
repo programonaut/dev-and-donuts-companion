@@ -27,8 +27,8 @@ export const TimeTableEntry = (props: {
         shadowColor: Colors.shadowDark,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        shadowRadius: 1,
+        elevation: 2,
       }}
     >
       <Text style={{ fontSize: 16, fontWeight: "bold" }}>

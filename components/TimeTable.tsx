@@ -44,6 +44,8 @@ export const TimeTable = (props: {
             {section.title}
           </Text>
         )}
+        contentContainerStyle={{ paddingHorizontal: 2, paddingBottom: 20 }}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
