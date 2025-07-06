@@ -23,7 +23,7 @@ export const Colors = {
     // Semantic colors
     background: '#FFFFFF',
     surface: '#F9FAFB',
-    card: '#FFFFFF',
+    card: "#F3F4F6",
     text: '#111827',
     textSecondary: '#6B7280',
     textTertiary: '#9CA3AF',
