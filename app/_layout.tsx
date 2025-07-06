@@ -1,5 +1,3 @@
-import { Colors } from "@/constants/colors";
-import migrations from "@/drizzle/migrations";
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Stack } from "expo-router";
@@ -9,6 +7,8 @@ import { ActivityIndicator, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import BottomSheetProvider from "../components/BottomSheetContext";
+import { Colors } from "../constants/colors";
+import migrations from "../drizzle/migrations";
 
 export const DATABASE_NAME = "devanddonutscompanion";
 

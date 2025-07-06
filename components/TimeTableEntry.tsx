@@ -1,5 +1,5 @@
-import { Colors } from "@/constants/colors";
 import { Text, TouchableOpacity } from "react-native";
+import { Colors } from "../constants/colors";
 
 export type TimeTableEntryType = {
   title: string;

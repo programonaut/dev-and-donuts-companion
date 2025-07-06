@@ -1,13 +1,13 @@
-import { TimeTable } from "@/components/TimeTable";
-import { TimeTableEntryType } from "@/components/TimeTableEntry";
-import { Colors } from "@/constants/colors";
-import * as schema from "@/db/schema";
-import { events } from "@/db/schema";
 import { drizzle, useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { useSQLiteContext } from "expo-sqlite";
 import { Text, View } from "react-native";
 import { useBottomSheet } from "../../components/BottomSheetContext";
+import { TimeTable } from "../../components/TimeTable";
+import { TimeTableEntryType } from "../../components/TimeTableEntry";
+import { Colors } from "../../constants/colors";
+import * as schema from "../../db/schema";
+import { events } from "../../db/schema";
 
 export default function Index() {
   const db = useSQLiteContext();

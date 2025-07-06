@@ -1,5 +1,3 @@
-import { TimeTableEntryType } from "@/components/TimeTableEntry";
-import { Colors } from "@/constants/colors";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import React, {
   createContext,
@@ -9,6 +7,8 @@ import React, {
   useState,
 } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { Colors } from "../constants/colors";
+import { TimeTableEntryType } from "./TimeTableEntry";
 
 type BottomSheetContextType = {
   openSheet: (entry: TimeTableEntryType) => void;

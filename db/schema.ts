@@ -1,6 +1,6 @@
-import { Questionnaire } from '@/app/(tabs)/match';
-import type { EventStructure } from '@/components/TimeTable';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import type { Questionnaire } from '../app/(tabs)/match';
+import type { EventStructure } from '../components/TimeTable';
 
 export const data = sqliteTable("data", {
     id: integer("id").primaryKey({ autoIncrement: true }).notNull(),

@@ -1,6 +1,3 @@
-import { Colors } from "@/constants/colors";
-import * as schema from "@/db/schema";
-import { data, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { drizzle, useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
@@ -9,6 +6,9 @@ import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import Dropdown from "react-native-input-select";
 import uuid from "react-native-uuid";
+import { Colors } from "../../constants/colors";
+import * as schema from "../../db/schema";
+import { data, users } from "../../db/schema";
 
 export type Questionnaire = {
   name: string;
