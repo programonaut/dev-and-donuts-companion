@@ -2,13 +2,6 @@ import { pgTable, serial, text, integer, jsonb, timestamp } from 'drizzle-orm/pg
 import type { Questionnaire } from '../src/types';
 import type { EventStructure } from '../src/types';
 
-// Data table for unique identifiers
-export const data = pgTable("data", {
-    id: serial("id").primaryKey(),
-    uniqueId: text("uniqueId").notNull().unique(),
-    createdAt: timestamp("created_at").defaultNow(),
-});
-
 // Users table
 export const users = pgTable("users", {
     id: serial("id").primaryKey(),
@@ -33,5 +26,8 @@ export const matches = pgTable("matches", {
     userId1: integer("user_id1").notNull().references(() => users.id),
     userId2: integer("user_id2").notNull().references(() => users.id),
     reason: text("reason").notNull(),
+    emoji1: text("emoji1").notNull(),
+    emoji2: text("emoji2").notNull(),
+    icebreakers: jsonb("icebreakers").notNull().$type<string[]>(),
     createdAt: timestamp("created_at").defaultNow(),
 }); 

@@ -3,6 +3,7 @@ import express, { Request, Response, Router } from 'express';
 import { db } from '../../lib';
 import * as schema from '../../lib/schema';
 import type { ApiResponse, Questionnaire, User } from '../types/index';
+import { matchUsers } from '../../lib/matching';
 
 const router: Router = express.Router();
 
@@ -10,14 +11,20 @@ const router: Router = express.Router();
 router.put('/:uniqueId', async (req: Request, res: Response<ApiResponse<User>>) => {
     try {
         const { uniqueId } = req.params;
-        const { answers } = req.body as { answers: Questionnaire };
 
-        console.log(req);
+        const { answers } = req.body as { answers: Questionnaire };
 
         if (!uniqueId) {
             return res.status(400).json({
                 success: false,
                 error: 'User uniqueId is required'
+            });
+        }
+
+        if (!answers) {
+            return res.status(400).json({
+                success: false,
+                error: 'Answers are required in request body'
             });
         }
 
@@ -40,6 +47,8 @@ router.put('/:uniqueId', async (req: Request, res: Response<ApiResponse<User>>) 
         const updatedUser = await db.update(schema.users).set({
             answers: answers
         }).where(eq(schema.users.uniqueId, uniqueId)).returning();
+
+        await matchUsers();
 
         return res.json({
             success: true,

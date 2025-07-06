@@ -1,4 +1,4 @@
-import { users, events, matches, data } from '../../lib/schema';
+import { users, events, matches } from '../../lib/schema';
 
 // Database types
 export type User = typeof users.$inferSelect;
@@ -9,9 +9,6 @@ export type NewEvent = typeof events.$inferInsert;
 
 export type Match = typeof matches.$inferSelect;
 export type NewMatch = typeof matches.$inferInsert;
-
-export type Data = typeof data.$inferSelect;
-export type NewData = typeof data.$inferInsert;
 
 // API Response types
 export interface ApiResponse<T = any> {
