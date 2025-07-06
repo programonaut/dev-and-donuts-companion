@@ -16,12 +16,12 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="event"
+        name="match"
         options={{
-          title: "Event",
+          title: "Match",
           tabBarIcon: ({ color, size, focused }) => (
             <Ionicons
-              name={focused ? "calendar" : "calendar-outline"}
+              name={focused ? "people" : "people-outline"}
               color={color}
               size={size}
             />
@@ -29,12 +29,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="match"
+        name="event"
         options={{
-          title: "Match",
+          title: "Event",
           tabBarIcon: ({ color, size, focused }) => (
             <Ionicons
-              name={focused ? "people" : "people-outline"}
+              name={focused ? "calendar" : "calendar-outline"}
               color={color}
               size={size}
             />

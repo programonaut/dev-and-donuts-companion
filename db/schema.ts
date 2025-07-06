@@ -1,10 +1,17 @@
+import { Questionnaire } from '@/app/(tabs)/match';
 import type { EventStructure } from '@/components/TimeTable';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
+export const data = sqliteTable("data", {
+    id: integer("id").primaryKey({ autoIncrement: true }).notNull(),
+    uniqueIdentifier: text("uniqueIdentifier").notNull().unique(),
+});
+
 export const users = sqliteTable("users", {
     id: integer("id").primaryKey({ autoIncrement: true }).notNull(),
-    name: text("name").notNull().unique(),
-    answers: text("answers").notNull().default("{}"),
+    name: text("name").notNull(),
+    answers: text("answers", { mode: "json" }).$type<Questionnaire>(),
+    uniqueIdentifier: text("uniqueIdentifier").notNull().references(() => data.uniqueIdentifier),
 });
 
 export const events = sqliteTable("events", {
