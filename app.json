@@ -1,5 +1,6 @@
 {
   "expo": {
+    "sdkVersion": "53.0.0",
     "name": "dev-and-donuts-companion",
     "slug": "dev-and-donuts-companion",
     "version": "1.0.0",
