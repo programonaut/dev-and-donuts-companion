@@ -1,7 +1,7 @@
 import { eq, aliasedTable, or } from 'drizzle-orm';
 import express, { Request, Response, Router } from 'express';
 import { db } from '../../lib/index.js';
-import * as schema from '../../lib/schema';
+import * as schema from '../../lib/schema.js';
 import type { ApiResponse } from '../types/index.js';
 import { matchUsers } from '../../lib/matching.js';
 

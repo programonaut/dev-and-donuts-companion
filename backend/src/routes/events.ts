@@ -2,7 +2,7 @@ import express, { Request, Response, Router } from 'express';
 import { desc, eq } from 'drizzle-orm';
 import type { ApiResponse, Event } from '../types/index.js';
 import { db } from '../../lib/index.js';
-import * as schema from '../../lib/schema';
+import * as schema from '../../lib/schema.js';
 
 const router: Router = express.Router();
 

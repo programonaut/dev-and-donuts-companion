@@ -30,10 +30,11 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy the built application
+# Copy the built application and necessary files
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=builder /app/drizzle ./drizzle
 
 # Install only production dependencies
 RUN npm install -g pnpm && pnpm install --prod --frozen-lockfile
@@ -49,4 +50,4 @@ EXPOSE 3001
 ENV PORT=3001
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["node", "dist/src/index.js"]

@@ -1,7 +1,7 @@
 import Groq from "groq-sdk";
-import type { NewMatch } from "../src/types";
-import { db } from "./index";
-import * as schema from "./schema";
+import type { NewMatch } from "../src/types/index.js";
+import { db } from "./index.js";
+import * as schema from "./schema.js";
 
 const groqApiKey = process.env['GROQ'];
 
