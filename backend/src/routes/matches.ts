@@ -3,6 +3,7 @@ import express, { Request, Response, Router } from 'express';
 import { db } from '../../lib/index.js';
 import * as schema from '../../lib/schema';
 import type { ApiResponse } from '../types/index.js';
+import { matchUsers } from '../../lib/matching.js';
 
 const router: Router = express.Router();
 
@@ -43,6 +44,23 @@ router.get('/:uniqueId', async (req: Request, res: Response<ApiResponse<any>>) =
         res.status(500).json({
             success: false,
             error: 'Failed to fetch match',
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
+router.post('/start', async (req: Request, res: Response<ApiResponse<any>>) => {
+    try {
+        const response = await matchUsers();
+        res.json({
+            success: true,
+            data: response
+        });
+    } catch (error) {
+        console.error('Error starting match:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to start match',
             message: error instanceof Error ? error.message : 'Unknown error'
         });
     }

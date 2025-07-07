@@ -1,21 +1,12 @@
-import { drizzle, useLiveQuery } from "drizzle-orm/expo-sqlite";
-import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
-import { useSQLiteContext } from "expo-sqlite";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { useBottomSheet } from "../../components/BottomSheetContext";
+import type { EventType } from "../../components/TimeTable";
 import { TimeTable } from "../../components/TimeTable";
 import { TimeTableEntryType } from "../../components/TimeTableEntry";
 import { Colors } from "../../constants/colors";
-import * as schema from "../../db/schema";
-import { events } from "../../db/schema";
-import { useEffect, useState } from "react";
-import type { EventType } from "../../components/TimeTable";
 
 export default function Index() {
-  const db = useSQLiteContext();
-  const drizzleDb = drizzle(db, { schema });
-  useDrizzleStudio(db);
-
   const [data, setData] = useState<EventType | undefined>();
   const [refreshing, setRefreshing] = useState(false);
   const { openSheet } = useBottomSheet();

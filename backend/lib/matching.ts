@@ -122,6 +122,8 @@ Return JSON array:
 
 Choose relevant emojis for each user based on their interests and projects. Write 'whyYoullHitItOff' as warm, conversational text that highlights their shared interests and side projects. Create 3 'suggestedIcebreakers' that are specific to their interests and projects. Make it feel like a natural introduction between two people who would genuinely enjoy talking. NO markdown formatting. NO duplicate user IDs. NO text before or after the JSON array.`;
 
+
+    console.log(prompt);
     try {
         const response = await groq.chat.completions.create({
             model: "llama-3.1-8b-instant",
