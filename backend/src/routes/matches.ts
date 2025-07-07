@@ -35,13 +35,13 @@ router.get('/:uniqueId', async (req: Request, res: Response<ApiResponse<any>>) =
 
         console.log(match);
 
-        res.json({
+        return res.json({
             success: true,
             data: match
         });
     } catch (error) {
         console.error('Error fetching match:', error);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: 'Failed to fetch match',
             message: error instanceof Error ? error.message : 'Unknown error'
@@ -49,7 +49,7 @@ router.get('/:uniqueId', async (req: Request, res: Response<ApiResponse<any>>) =
     }
 });
 
-router.post('/start', async (req: Request, res: Response<ApiResponse<any>>) => {
+router.post('/start', async (_req: Request, res: Response<ApiResponse<any>>) => {
     try {
         const response = await matchUsers();
         res.json({

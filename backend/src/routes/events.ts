@@ -1,23 +1,23 @@
 import express, { Request, Response, Router } from 'express';
 import { desc, eq } from 'drizzle-orm';
-import type { CreateEventRequest, ApiResponse, Event } from '../types/index.js';
+import type { ApiResponse, Event } from '../types/index.js';
 import { db } from '../../lib/index.js';
 import * as schema from '../../lib/schema';
 
 const router: Router = express.Router();
 
 // GET /api/events - Fetch all events
-router.get('/', async (req: Request, res: Response<ApiResponse<Event[]>>) => {
+router.get('/', async (_req: Request, res: Response<ApiResponse<Event[]>>) => {
     try {
         const allEvents = await db.select().from(schema.events).orderBy(desc(schema.events.date)).limit(1);
-        res.json({
+        return res.json({
             success: true,
             data: allEvents,
             count: allEvents.length
         });
     } catch (error) {
         console.error('Error fetching events:', error);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: 'Failed to fetch events',
             message: error instanceof Error ? error.message : 'Unknown error'
@@ -46,13 +46,13 @@ router.get('/:id', async (req: Request, res: Response<ApiResponse<Event>>) => {
             });
         }
 
-        res.json({
+        return res.json({
             success: true,
             data: event[0]!
         });
     } catch (error) {
         console.error('Error fetching event:', error);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: 'Failed to fetch event',
             message: error instanceof Error ? error.message : 'Unknown error'

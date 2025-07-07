@@ -12,23 +12,8 @@ async function seedDatabase(): Promise<void> {
         await db.delete(schema.matches);
         await db.delete(schema.users);
         await db.delete(schema.events);
-        await db.delete(schema.data);
 
         console.log('🗑️  Cleared existing data');
-
-        // Seed data table
-        const dataEntries = await db.insert(schema.data).values([
-            { uniqueIdentifier: 'user001' },
-            { uniqueIdentifier: 'user002' },
-            { uniqueIdentifier: 'user003' },
-            { uniqueIdentifier: 'user004' },
-            { uniqueIdentifier: 'user005' },
-            { uniqueIdentifier: 'user006' },
-            { uniqueIdentifier: 'user007' },
-            { uniqueIdentifier: 'user008' },
-        ]).returning();
-
-        console.log('📊 Created data entries:', dataEntries.length);
 
         // Seed users table with realistic examples
         const users = await db.insert(schema.users).values([
@@ -136,7 +121,7 @@ async function seedDatabase(): Promise<void> {
                     nonSoftware: 'I enjoy playing guitar and hiking in the mountains'
                 }
             }
-        ]).returning();
+        ] as any).returning();
 
         console.log('👥 Created users:', users.length);
 
@@ -247,7 +232,7 @@ async function seedDatabase(): Promise<void> {
                     ]
                 }
             }
-        ]).returning();
+        ] as any).returning();
 
         console.log('📅 Created events:', events.length);
 
@@ -283,13 +268,12 @@ async function seedDatabase(): Promise<void> {
                 userId2: users[3]!.id, // Alex Thompson
                 reason: 'Frontend developer and DevOps engineer. Sarah can help with UI/UX while Alex can help with deployment and infrastructure.'
             }
-        ]).returning();
+        ] as any).returning();
 
         console.log('🤝 Created matches:', matches.length);
 
         console.log('✅ Database seeding completed successfully!');
         console.log('\n📊 Summary:');
-        console.log(`   - Data entries: ${dataEntries.length}`);
         console.log(`   - Users: ${users.length}`);
         console.log(`   - Events: ${events.length}`);
         console.log(`   - Matches: ${matches.length}`);

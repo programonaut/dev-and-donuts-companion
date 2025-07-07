@@ -1,10 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import usersRouter from './routes/users.js';
 import eventsRouter from './routes/events.js';
 import matchesRouter from './routes/matches.js';
-import deviceFarmRouter from './routes/devicefarm.js';
 import type { ApiResponse } from './types/index.js';
 
 // Load environment variables
@@ -18,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
-app.get('/health', (req: Request, res: Response<ApiResponse>) => {
+app.get('/health', (_req: Request, res: Response<ApiResponse>) => {
     res.json({
         success: true,
         data: {
@@ -33,10 +31,9 @@ app.get('/health', (req: Request, res: Response<ApiResponse>) => {
 app.use('/api/users', usersRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/matches', matchesRouter);
-app.use('/api/devicefarm', deviceFarmRouter);
 
 // Root endpoint
-app.get('/', (req: Request, res: Response<ApiResponse>) => {
+app.get('/', (_req: Request, res: Response<ApiResponse>) => {
     res.json({
         success: true,
         data: {
@@ -47,7 +44,6 @@ app.get('/', (req: Request, res: Response<ApiResponse>) => {
                 users: '/api/users',
                 events: '/api/events',
                 matches: '/api/matches',
-                devicefarm: '/api/devicefarm'
             }
         }
     });
@@ -65,7 +61,7 @@ app.use('*', (req: Request, res: Response<ApiResponse>) => {
 });
 
 // Error handler
-app.use((error: Error, req: Request, res: Response<ApiResponse>, next: NextFunction) => {
+app.use((error: Error, _req: Request, res: Response<ApiResponse>, _next: NextFunction) => {
     console.error('Unhandled error:', error);
     res.status(500).json({
         success: false,
