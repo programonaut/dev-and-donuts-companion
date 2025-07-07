@@ -1,5 +1,6 @@
 import { RefreshControl, SectionList, Text, View } from "react-native";
 import { TimeTableEntry, TimeTableEntryType } from "./TimeTableEntry";
+import { Colors } from "../constants/colors";
 
 export type EventType = {
   name: string;
@@ -33,6 +34,7 @@ export const TimeTable = (props: {
           fontWeight: "medium",
           textDecorationLine: "underline",
           marginBottom: -12,
+          color: Colors.text,
         }}
       >
         Schedule
@@ -47,7 +49,7 @@ export const TimeTable = (props: {
           />
         )}
         renderSectionHeader={({ section }) => (
-          <Text style={{ marginTop: 20, marginBottom: 4 }}>
+          <Text style={{ marginTop: 20, marginBottom: 4, color: Colors.text }}>
             {section.title}
           </Text>
         )}

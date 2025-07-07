@@ -50,10 +50,11 @@ export default function Index() {
         flex: 1,
         paddingTop: 20,
         paddingHorizontal: 16,
-        backgroundColor: Colors.background,
       }}
     >
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{data?.name}</Text>
+      <Text style={{ fontSize: 20, fontWeight: "bold", color: Colors.text }}>
+        {data?.name}
+      </Text>
       <TimeTable
         timeTable={data?.structure.timetable || []}
         onEntryPress={handleEntryPress}

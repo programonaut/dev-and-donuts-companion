@@ -23,7 +23,7 @@ export const TimeTableEntry = (props: {
       style={{
         borderRadius: 10,
         padding: 10,
-        backgroundColor: Colors.card,
+        backgroundColor: Colors.backgroundSecondary,
         shadowColor: Colors.shadowDark,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
@@ -31,7 +31,7 @@ export const TimeTableEntry = (props: {
         elevation: 2,
       }}
     >
-      <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+      <Text style={{ fontSize: 16, fontWeight: "bold", color: Colors.text }}>
         {props.entry.title}
       </Text>
       {props.entry.speaker && (
@@ -41,7 +41,9 @@ export const TimeTableEntry = (props: {
           {props.entry.speaker.name}
         </Text>
       )}
-      <Text style={{ fontSize: 14 }}>{props.entry.summary}</Text>
+      <Text style={{ fontSize: 14, color: Colors.text }}>
+        {props.entry.summary}
+      </Text>
     </TouchableOpacity>
   );
 };

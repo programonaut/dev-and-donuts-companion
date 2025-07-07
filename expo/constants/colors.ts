@@ -22,13 +22,16 @@ export const Colors = {
 
     // Semantic colors
     background: '#FFFFFF',
+    backgroundSecondary: '#162944',
     surface: '#F9FAFB',
-    card: "#F3F4F6",
-    text: '#111827',
-    textSecondary: '#6B7280',
-    textTertiary: '#9CA3AF',
+    card: "#207189",
+    text: '#FFFFFF',
+    textSecondary: '#e5e9f3',
+    textPlaceholder: '#c5ccd5',
+    textTertiary: '#30aa56',
     border: '#E5E7EB',
     borderLight: '#F3F4F6',
+    buttonBackground: '#2d9f60',
 
     // Status colors
     success: '#10B981',

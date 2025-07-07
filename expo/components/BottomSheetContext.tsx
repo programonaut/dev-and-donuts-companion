@@ -36,7 +36,7 @@ export default function BottomSheetProvider({
     null
   );
 
-  const snapPoints = useMemo(() => ["25%", "50%", "75%"], []);
+  const snapPoints = useMemo(() => ["50%", "75%"], []);
 
   const [backdropVisible, setBackdropVisible] = useState(false);
 
@@ -56,10 +56,14 @@ export default function BottomSheetProvider({
         enablePanDownToClose
         backdropComponent={({ style }) =>
           backdropVisible && (
-            <View style={[style, { backgroundColor: Colors.shadowDark }]} />
+            <View
+              style={[style, { backgroundColor: Colors.black, opacity: 0.25 }]}
+            />
           )
         }
         onClose={() => setBackdropVisible(false)}
+        backgroundStyle={{ backgroundColor: Colors.backgroundSecondary }}
+        handleIndicatorStyle={{ backgroundColor: Colors.textSecondary }}
       >
         <BottomSheetView style={styles.contentContainer}>
           {selectedEntry && (
@@ -94,25 +98,24 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     padding: 20,
-    backgroundColor: "white",
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 4,
-    color: "#000",
+    color: Colors.text,
   },
   time: {
     fontSize: 16,
     marginBottom: 16,
-    color: "#333",
+    color: Colors.textSecondary,
   },
   description: {
     fontSize: 16,
     lineHeight: 24,
     marginTop: 8,
     marginBottom: 16,
-    color: "#666",
+    color: Colors.textSecondary,
   },
   speakerContainer: {
     flexDirection: "column",

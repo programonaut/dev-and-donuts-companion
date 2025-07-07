@@ -3,7 +3,7 @@ import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Stack } from "expo-router";
 import { openDatabaseSync, SQLiteProvider } from "expo-sqlite";
 import { Suspense } from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet, ImageBackground } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import BottomSheetProvider from "../components/BottomSheetContext";
@@ -27,18 +27,35 @@ export default function RootLayout() {
             useSuspense
           >
             <SafeAreaProvider>
-              <SafeAreaView
+              <ImageBackground
+                source={{
+                  uri: "https://yasoon.de/wp-content/uploads/2025/01/Dev-and-Donuts_BG-4K-scaled.webp",
+                }}
                 style={styles.container}
-                edges={["top", "left", "right"]}
+                resizeMode="cover"
               >
-                <Stack>
-                  <Stack.Screen name="index" options={{ headerShown: false }} />
-                  <Stack.Screen
-                    name="(tabs)"
-                    options={{ headerShown: false }}
-                  />
-                </Stack>
-              </SafeAreaView>
+                <SafeAreaView
+                  style={styles.container}
+                  edges={["top", "left", "right"]}
+                >
+                  <Stack
+                    screenOptions={{
+                      contentStyle: { backgroundColor: "transparent" },
+                    }}
+                  >
+                    <Stack.Screen
+                      name="index"
+                      options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                      name="(tabs)"
+                      options={{
+                        headerShown: false,
+                      }}
+                    />
+                  </Stack>
+                </SafeAreaView>
+              </ImageBackground>
             </SafeAreaProvider>
           </SQLiteProvider>
         </Suspense>
@@ -50,7 +67,5 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
-    paddingBottom: 0,
   },
 });

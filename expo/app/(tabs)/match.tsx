@@ -19,6 +19,7 @@ import uuid from "react-native-uuid";
 import { Colors } from "../../constants/colors";
 import * as schema from "../../db/schema";
 import { data } from "../../db/schema";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export type Questionnaire = {
   name: string;
@@ -62,7 +63,7 @@ export default function Index() {
   const drizzleDb = drizzle(db, { schema });
   useDrizzleStudio(db);
 
-  const { data: userData } = useLiveQuery(
+  const { data: userData, updatedAt } = useLiveQuery(
     drizzleDb.select().from(data).limit(1)
   );
 
@@ -150,7 +151,11 @@ export default function Index() {
   useEffect(() => {
     if (userData.length === 0) {
       (async () => {
-        await drizzleDb.insert(data).values({ uniqueId: uuid.v4() });
+        const user = await drizzleDb.select().from(data).limit(1);
+        if (user.length === 0) {
+          console.log("inserting user");
+          await drizzleDb.insert(data).values({ uniqueId: uuid.v4() });
+        }
       })();
     } else {
       (async () => {
@@ -164,7 +169,7 @@ export default function Index() {
         }
       })();
     }
-  }, [userData]);
+  }, [userData, updatedAt]);
 
   return (
     <ScrollView
@@ -174,7 +179,6 @@ export default function Index() {
         flex: 1,
         paddingVertical: 20,
         paddingHorizontal: 16,
-        backgroundColor: Colors.background,
         overflowY: "scroll",
       }}
     >
@@ -220,6 +224,7 @@ const Questionnaire = ({
       <TextInput
         style={styles.input}
         placeholder="Name"
+        placeholderTextColor={Colors.textPlaceholder}
         value={questionnaire.name}
         onChangeText={(text) =>
           setQuestionnaire({ ...questionnaire, name: text })
@@ -235,9 +240,19 @@ const Questionnaire = ({
           margin: 0,
         }}
         placeholderStyle={{
-          color: Colors.gray500,
+          color: Colors.textPlaceholder,
         }}
-        dropdownIconStyle={{ top: 20, right: 10 }}
+        multipleSelectedItemStyle={{
+          backgroundColor: Colors.backgroundSecondary,
+          color: Colors.text,
+        }}
+        dropdownIconStyle={{
+          top: 10,
+          right: 10,
+        }}
+        dropdownIcon={
+          <Ionicons name="chevron-down" size={24} color={Colors.text} />
+        }
         options={[
           { label: "Web Development", value: "web_development" },
           { label: "Mobile Development", value: "mobile_development" },
@@ -258,11 +273,27 @@ const Questionnaire = ({
             technicalDomain: value as Questionnaire["technicalDomain"],
           })
         }
+        modalControls={{
+          modalOptionsContainerStyle: {
+            backgroundColor: Colors.backgroundSecondary,
+            borderColor: Colors.text,
+          },
+        }}
+        checkboxControls={{
+          checkboxStyle: {
+            backgroundColor: Colors.backgroundSecondary,
+            borderColor: Colors.text,
+          },
+          checkboxLabelStyle: {
+            color: Colors.text,
+          },
+        }}
       />
       <Text style={styles.label}>Tonight I am hoping to...</Text>
       <TextInput
         style={styles.multilineInput}
         placeholder="I am hoping to..."
+        placeholderTextColor={Colors.textPlaceholder}
         value={questionnaire.tonight}
         onChangeText={(text) =>
           setQuestionnaire({ ...questionnaire, tonight: text })
@@ -275,6 +306,7 @@ const Questionnaire = ({
       <TextInput
         style={styles.multilineInput}
         placeholder="I have built..."
+        placeholderTextColor={Colors.textPlaceholder}
         value={questionnaire.sideProject}
         onChangeText={(text) =>
           setQuestionnaire({ ...questionnaire, sideProject: text })
@@ -287,6 +319,7 @@ const Questionnaire = ({
       <TextInput
         style={styles.multilineInput}
         placeholder="I can help you with..."
+        placeholderTextColor={Colors.textPlaceholder}
         value={questionnaire.helpSkill}
         onChangeText={(text) =>
           setQuestionnaire({ ...questionnaire, helpSkill: text })
@@ -299,13 +332,18 @@ const Questionnaire = ({
       <TextInput
         style={styles.multilineInput}
         placeholder="3D Printing, Cooking, etc."
+        placeholderTextColor={Colors.textPlaceholder}
         value={questionnaire.nonSoftware}
         onChangeText={(text) =>
           setQuestionnaire({ ...questionnaire, nonSoftware: text })
         }
         multiline
       />
-      <Button title="Submit" onPress={onSubmit} />
+      <Button
+        title="Submit"
+        onPress={onSubmit}
+        color={Colors.buttonBackground}
+      />
       <View style={{ marginBottom: 40 }} />
     </View>
   );
@@ -406,7 +444,7 @@ const WaitingScreen = ({
       <Button
         title="Update my profile"
         onPress={() => setShowUpdateForm(true)}
-        color={Colors.primary}
+        color={Colors.buttonBackground}
       />
 
       <Text style={styles.refreshHint}>
@@ -420,7 +458,7 @@ const WaitingScreen = ({
         style={{
           marginTop: 64,
         }}
-        underlayColor={Colors.white}
+        underlayColor={"transparent"}
       >
         <Text style={styles.demoHint}>
           DEMO: Press this text three times to start the matching process
@@ -612,6 +650,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: 20,
+    color: Colors.text,
   },
   multilineInput: {
     textAlignVertical: "top",
@@ -621,9 +660,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: 20,
+    color: Colors.text,
   },
   dropdown: {
-    backgroundColor: Colors.white,
+    backgroundColor: "transparent",
     borderColor: Colors.gray200,
     borderRadius: 10,
     borderWidth: 1,
@@ -634,10 +674,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     marginBottom: 4,
-  },
-  placeholder: {
-    fontSize: 16,
-    color: "#999",
+    color: Colors.text,
   },
   selectedItem: {
     fontSize: 16,
