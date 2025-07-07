@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "devanddonutscompanion.app"
-               BlueprintName = "devanddonutscompanion"
-               ReferencedContainer = "container:devanddonutscompanion.xcodeproj">
+               BuildableName = "DevDonuts.app"
+               BlueprintName = "DevDonuts"
+               ReferencedContainer = "container:DevDonuts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "devanddonutscompanionTests.xctest"
-               BlueprintName = "devanddonutscompanionTests"
-               ReferencedContainer = "container:devanddonutscompanion.xcodeproj">
+               BuildableName = "DevDonutsTests.xctest"
+               BlueprintName = "DevDonutsTests"
+               ReferencedContainer = "container:DevDonuts.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "devanddonutscompanion.app"
-            BlueprintName = "devanddonutscompanion"
-            ReferencedContainer = "container:devanddonutscompanion.xcodeproj">
+            BuildableName = "DevDonuts.app"
+            BlueprintName = "DevDonuts"
+            ReferencedContainer = "container:DevDonuts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "devanddonutscompanion.app"
-            BlueprintName = "devanddonutscompanion"
-            ReferencedContainer = "container:devanddonutscompanion.xcodeproj">
+            BuildableName = "DevDonuts.app"
+            BlueprintName = "DevDonuts"
+            ReferencedContainer = "container:DevDonuts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
