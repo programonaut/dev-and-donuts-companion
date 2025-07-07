@@ -32,6 +32,7 @@ export default function RootLayout() {
                 edges={["top", "left", "right"]}
               >
                 <Stack>
+                  <Stack.Screen name="index" options={{ headerShown: false }} />
                   <Stack.Screen
                     name="(tabs)"
                     options={{ headerShown: false }}

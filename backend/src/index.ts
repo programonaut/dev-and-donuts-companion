@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import usersRouter from './routes/users.js';
 import eventsRouter from './routes/events.js';
 import matchesRouter from './routes/matches.js';
+import deviceFarmRouter from './routes/devicefarm.js';
 import type { ApiResponse } from './types/index.js';
 
 // Load environment variables
@@ -32,6 +33,7 @@ app.get('/health', (req: Request, res: Response<ApiResponse>) => {
 app.use('/api/users', usersRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/matches', matchesRouter);
+app.use('/api/devicefarm', deviceFarmRouter);
 
 // Root endpoint
 app.get('/', (req: Request, res: Response<ApiResponse>) => {
@@ -44,7 +46,8 @@ app.get('/', (req: Request, res: Response<ApiResponse>) => {
                 health: '/health',
                 users: '/api/users',
                 events: '/api/events',
-                matches: '/api/matches'
+                matches: '/api/matches',
+                devicefarm: '/api/devicefarm'
             }
         }
     });
